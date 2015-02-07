@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Pomodoro</title>
+    <style>
+        #header {
+            margin: 200 auto;
+            width: 1150px;
+        }
+        h1, h2 {
+            color: white;
+            font-family: 'helvetica';
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1 id="time"></h1>
+        <h2 id="color"></h2>
+    </div>
+
+    <script>
+        (function() {
+            var WORK_PERIOD = 25 * 60;
+            var BREAK_PERIOD = 5 * 60;
+            var isBreak = true;
+            var timer, minutes, seconds, hex;
+
+            function updateTime() {
+                seconds = timer % 60;
+                minutes = (timer - seconds) / 60;
+
+                if (minutes < 10) { minutes = '0' + minutes; }
+                if (seconds < 10) { seconds = '0' + seconds; }
+
+                if (isBreak) {
+                    hex = '#BB' + minutes + seconds; 
+                } else {
+                    hex = '#00' + minutes + seconds;
+                }
+                
+                document.body.style.background = hex;
+                document.getElementById('color').innerHTML = hex;
+                document.querySelector('#time').innerHTML = minutes + ' : ' + seconds;
+                
+                timer -= 1;
+            }
+
+            function resetTimer() {
+                if (isBreak) {
+                    timer = BREAK_PERIOD;
+                } else {
+                    timer = WORK_PERIOD;
+                }
+            }
+
+            setInterval(function() {
+                if (!timer) {
+                    isBreak = !isBreak;
+                    resetTimer();
+                }
+                updateTime();
+            }, 1000);
+        }());
+    </script>
+</body>
+</html>

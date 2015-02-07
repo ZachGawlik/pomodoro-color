@@ -1,0 +1,7 @@
+Todo:
+
+ - Progress bar
+ - Counting multiple pomodoro cycles for a larger break
+ - Scaling, hideable text
+ - move js/css into separate files
+
