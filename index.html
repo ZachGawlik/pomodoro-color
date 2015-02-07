@@ -24,7 +24,7 @@
             var WORK_PERIOD = 25 * 60;
             var BREAK_PERIOD = 5 * 60;
             var isBreak = true;
-            var timer, minutes, seconds, hex;
+            var timer, minutes, seconds, leadHex, hex;
 
             function updateTime() {
                 seconds = timer % 60;
@@ -33,25 +33,19 @@
                 if (minutes < 10) { minutes = '0' + minutes; }
                 if (seconds < 10) { seconds = '0' + seconds; }
 
-                if (isBreak) {
-                    hex = '#BB' + minutes + seconds; 
-                } else {
-                    hex = '#00' + minutes + seconds;
-                }
+                leadHex = isBreak ? '#BB' : '#00';
+                hex = leadHex + minutes + seconds; 
                 
                 document.body.style.background = hex;
                 document.getElementById('color').innerHTML = hex;
-                document.querySelector('#time').innerHTML = minutes + ' : ' + seconds;
+                document.getElementById('time').innerHTML = 
+                    minutes + ' : ' + seconds;
                 
                 timer -= 1;
             }
 
             function resetTimer() {
-                if (isBreak) {
-                    timer = BREAK_PERIOD;
-                } else {
-                    timer = WORK_PERIOD;
-                }
+                timer = isBreak ? BREAK_PERIOD : WORK_PERIOD;
             }
 
             setInterval(function() {
