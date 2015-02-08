@@ -16,13 +16,12 @@ body {
     font-weight: 300;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 1s; 
+    transition: opacity 1s, visibility 1s; 
 }
 
 #container:hover > .text {
     visibility: visible;
     opacity: 1;
-    transition: opacity 1s; 
 }
 
 #progressbox {
