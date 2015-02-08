@@ -1,4 +1,3 @@
 Todo:
 
  - Counting multiple pomodoro cycles for a larger break
- - favicon
