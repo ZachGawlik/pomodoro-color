@@ -1,87 +1,17 @@
 <html>
 <head>
     <title>Pomodoro</title>
-    <style>
-        body {
-            height: 100%;
-        }
-
-        #container {
-            width: 100%;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        h1, h2 {
-            color: white;
-            text-align: center;
-            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, "Lucida Grande", sans-serif; 
-            font-weight: 300;
-        }
-
-        #progressbox {
-            background-color: rgba(255, 255, 255, .2);
-        }
-
-        #progressbar {
-            background-color: rgba(255, 255, 255, .2);
-            height: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <div id="container">
-        <h1 id="time"></h1>
-        <h2 id="color"></h2>
+        <h1 id="time" class="text"></h1>
         <div id="progressbox">
             <div id="progressbar"></div> 
         </div>
+        <h2 id="color" class="text"></h2>
     </div>
-
-    <script>
-        (function() {
-            var WORK_PERIOD = 25 * 60;
-            var BREAK_PERIOD = 5 * 60;
-            var isBreak = false;
-            var minutes, seconds, leadHex, hex;
-            var timer = WORK_PERIOD;
-            var maxTime = WORK_PERIOD;
-
-            function updateProgressbar() {
-                document.getElementById('progressbar').style.width =
-                    100 * timer / maxTime + '%';
-            }
-
-            function updateTime() {
-                seconds = timer % 60;
-                minutes = (timer - seconds) / 60;
-
-                if (minutes < 10) { minutes = '0' + minutes; }
-                if (seconds < 10) { seconds = '0' + seconds; }
-
-                leadHex = isBreak ? '#BB' : '#00';
-                hex = leadHex + minutes + seconds; 
-
-                updateProgressbar();
-                
-                document.body.style.background = hex;
-                document.getElementById('color').innerHTML = hex;
-                document.getElementById('time').innerHTML = 
-                    minutes + ' : ' + seconds;
-                
-                timer -= 1;
-            }
-
-            setInterval(function() {
-                if (!timer) {
-                    isBreak = !isBreak;
-                    maxTime = isBreak ? BREAK_PERIOD : WORK_PERIOD;
-                    timer = maxTime;
-                }
-                updateTime();
-            }, 1000);
-        }());
-    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
