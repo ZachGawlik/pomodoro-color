@@ -2,6 +2,7 @@ $(function() {
     var WORK_PERIOD = 25 * 60;
     var BREAK_PERIOD = 5 * 60;
     var isBreak = false;
+    var isPaused = false;
     var minutes, seconds, leadHex, hex;
     var timer = WORK_PERIOD;
     var maxTime = WORK_PERIOD;
@@ -31,7 +32,14 @@ $(function() {
         timer -= 1;
     }
 
+    $('body').click(function() {
+        isPaused = !isPaused;
+        $('.pause-text').toggle();
+        $('.text').toggle();
+    });
+
     setInterval(function() {
+        if (isPaused) return;
         if (!timer) {
             isBreak = !isBreak;
             maxTime = isBreak ? BREAK_PERIOD : WORK_PERIOD;

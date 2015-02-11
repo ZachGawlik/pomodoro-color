@@ -6,26 +6,40 @@ body {
 }
 
 #container {
-    padding: 100px;
+    padding: 10%;
     margin: auto;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.text {
+h1, h2, p, a {
     color: white;
     text-align: center;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: 300;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.text {
     visibility: hidden;
     opacity: 0;
     transition: opacity 1s, visibility 1s; 
 }
 
-#container:hover > .text, body:active .text {
+#container:hover > .text {
     visibility: visible;
     opacity: 1;
+}
+
+.pause-text {
+    display: none;
 }
 
 #progressbar {
