@@ -27,6 +27,10 @@ h1, h2, p, a {
     user-select: none;
 }
 
+h1 {
+    font-size: 3em;
+}
+
 .text {
     visibility: hidden;
     opacity: 0;

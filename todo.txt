@@ -1,3 +1,4 @@
 Todo:
 
  - Counting multiple pomodoro cycles for a larger break
+ - Switch to using system time to prevent lag when inactive

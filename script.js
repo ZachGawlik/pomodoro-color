@@ -44,6 +44,7 @@ $(function() {
             isBreak = !isBreak;
             maxTime = isBreak ? BREAK_PERIOD : WORK_PERIOD;
             timer = maxTime;
+            document.title = isBreak ? 'BREAK' : 'Pomodoro';
         }
         updateTime();
     }, 1000);
