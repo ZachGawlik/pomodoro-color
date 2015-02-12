@@ -2,3 +2,6 @@ Todo:
 
  - Counting multiple pomodoro cycles for a larger break
  - Switch to using system time to prevent lag when inactive
+ - Display and fadeout introductory text on page load
+ - Ding when phase is over
+ - Change title when paused
