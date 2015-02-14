@@ -5,8 +5,6 @@ $(function() {
     var isPaused = false;
     var timer = WORK_PERIOD;
     var maxTime = WORK_PERIOD;
-    var $time = $('#time');
-    var $color = $('#color');
 
     function updateProgressbar() {
         $('#progressbar').width(100 * timer / maxTime + '%');
@@ -20,27 +18,20 @@ $(function() {
         return {minutes: minutes, seconds: seconds}
     }
 
-    function updateDisplayTime(remaining) {
-        $time.text(remaining.minutes + ' : ' + remaining.seconds);
+    function setDisplayTime(remaining) {
+        $('#time').text(remaining.minutes + ' : ' + remaining.seconds);
     }
 
-    function updateDisplayColor(remaining) {
+    function setDisplayColor(remaining) {
         leadHex = isBreak ? '#BB' : '#00';
         hex = leadHex + remaining.minutes + remaining.seconds; 
-        $color.text(hex);
+        $('#color').text(hex);
         $('body').css('background-color', hex);
     }
 
-    var prev = new Date();
-    function updateTime() {
-        var now = new Date();
-        timer -= Math.round((now - prev) / 1000);
-        remaining = humanizeTimer(timer)
-
-        updateDisplayTime(remaining);
-        updateDisplayColor(remaining);
-        updateProgressbar();
-        prev = new Date();
+    function setTitle() {
+        var base = isBreak ? 'BREAK' : 'Pomodoro';
+        document.title = isPaused ? base + ' - Paused' : base;
     }
 
     $('body').click(function() {
@@ -48,18 +39,30 @@ $(function() {
         if (!isPaused) {
             prev = new Date();
         }
+        setTitle();
         $('.pause-text').toggle();
         $('.text').toggle();
     });
 
-    var startTime = new Date();
+    var prev = new Date();
+    function updateTime() {
+        var now = new Date();
+        timer -= Math.round((now - prev) / 1000);
+        remaining = humanizeTimer(timer)
+
+        setDisplayTime(remaining);
+        setDisplayColor(remaining);
+        updateProgressbar();
+        prev = new Date();
+    }
+
     setInterval(function() {
         if (isPaused) return;
         if (timer <= 0) {
             isBreak = !isBreak;
             maxTime = isBreak ? BREAK_PERIOD : WORK_PERIOD;
             timer = maxTime;
-            document.title = isBreak ? 'BREAK' : 'Pomodoro';
+            setTitle();
         }
         updateTime();
     }, 1000);
