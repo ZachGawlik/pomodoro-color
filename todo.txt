@@ -1,5 +1,4 @@
 Todo:
 
  - Counting multiple pomodoro cycles for a larger break
- - Display and fadeout introductory text on page load
  - Ding when phase is over

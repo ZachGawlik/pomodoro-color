@@ -10,6 +10,10 @@ $(function() {
         $('#progressbar').width(100 * timer / maxTime + '%');
     }
 
+    setTimeout(function() {
+        $('.text').removeClass('visible');
+    }, 3000);
+
     function humanizeTimer() {
         var seconds = timer % 60;
         var minutes = (timer - seconds) / 60;

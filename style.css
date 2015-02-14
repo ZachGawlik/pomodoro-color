@@ -34,10 +34,10 @@ h1 {
 .text {
     visibility: hidden;
     opacity: 0;
-    transition: opacity 1s, visibility 1s; 
+    transition: opacity 1.5s, visibility 1.5s; 
 }
 
-#container:hover > .text {
+#container:hover > .text, .text.visible {
     visibility: visible;
     opacity: 1;
 }
